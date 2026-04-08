@@ -1,0 +1,25 @@
+# --- Java & Compiled Files ---
+
+*.class
+*.jar
+*.war
+*.ear
+/target/
+/bin/
+
+# --- Eclipse Metadata (Specific to your local setup) ---
+
+.metadata/
+.remote-sync.json
+.settings/
+.project
+.classpath
+.factorypath
+
+# --- macOS System Files ---
+
+.DS_Store
+
+# --- OSF/CLI Temporary Files ---
+
+.osfcli/
