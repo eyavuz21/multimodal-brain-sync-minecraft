@@ -1,0 +1,4 @@
+name: newestplugin
+main: newestfile.here.newestplugin.Main 
+version: 0.0.1-SNAPSHOT
+api-version: 1.21.4
