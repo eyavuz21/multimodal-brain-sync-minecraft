@@ -1,4 +1,4 @@
-# Prefrontal Brain-to-Brain Synchrony in Group Hunting (n=40)
+# Prefrontal Brain-to-Brain Synchrony in Group Hunting (n=32)
 
 [![Preprint](https://img.shields.io/badge/bioRxiv-Preprint-red)](https://doi.org/10.1101/2026.04.05.716331)
 
