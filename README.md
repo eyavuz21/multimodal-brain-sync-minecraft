@@ -26,6 +26,15 @@ This repository contains the multimodal data pipeline and analysis scripts for t
 * **Statistical Analysis**: `fNIRSanalysis.ipynb` (Running fNIRS and physiology data stats) and `FNIRSDistancemodel.R` (Analyzing behavioral stats).
 * **Visualization**: `CreatefNIRStemplate.ipynb` for fNIRS-specific data visualizations.
 
+## 📦 Data
+
+Derived inter-brain synchrony data for the hyperscanning analysis (9 dyads that passed fNIRS quality control, 25 prefrontal channels each). No raw signals or identifying information are included; dyads are numbered only.
+
+* **`data/wtc_real_dyads.csv`** (450 rows): mean wavelet transform coherence (WTC) between the two predators in each dyad, per channel and trial type (`Chase` = Hunt trials, `Follow` = Follow trials), averaged within three frequency bands: low (0.02-0.03 Hz), mid (0.03-0.1 Hz) and high (0.1-0.2 Hz). `Most likely region` gives the Brodmann-atlas region for each channel. Channels 24 and 25 are short-separation channels.
+* **`data/wtc_null_timeshift_1000.csv`** (450,000 rows): the same table recomputed for 1,000 time-shifted surrogates per dyad and channel (`Iteration` 1-1000), in which one partner's signal is shifted relative to the other to break temporal alignment. This is the null distribution used to test whether observed synchrony exceeds chance.
+
+In `fNIRSanalysis.ipynb` these files are read as `FINALWTCFRAMEREALWITHNAMES.csv` and `FINALWTCFRAMENULLWITHNAMES.csv`.
+
 ## 🛠 Skills Demonstrated
 * **Multimodal Sensor Fusion**: Synchronizing discrete game-engine events (Minecraft) with continuous neural streams (fNIRS) at high temporal resolution.
 * **Advanced Signal Processing**: Implementing Wavelet Coherence and non-parametric permutation testing (Phase/Time scrambling) for dyadic data analysis.
