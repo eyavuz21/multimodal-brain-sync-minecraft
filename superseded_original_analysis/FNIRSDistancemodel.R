@@ -1,6 +1,6 @@
 library(effectsize);library(car);library(writexl);library(openxlsx);library(ggplot2);library(readr);library(lm.beta);library(readxl); library(data.table); library(tidyr); library(tidyverse); library(zoo); library(dplyr);library(purrr);library(car);library(psych);library(GPArotation);library(lmerTest)
 
-reshaped_df <- read.csv('/Users/macbook/Desktop/UCL PhD Work/fNIRSfMRIminecraft/Minecraftanalysis/Analysispipeline/Behaviouraldata/FINALFRAMEFORMATRIXRSTUDIOMAHAL.csv')
+reshaped_df <- read.csv('/Users/macbook/Desktop/7 UCL PhD (2022-2025)/2 Minecraft fNIRS-fMRI Study/Study Files/Minecraftanalysis/Analysispipeline/Behaviouraldata/FINALFRAMEFORMATRIXRSTUDIOMAHAL.csv')
 reshaped_df <- reshaped_df[order(reshaped_df$Dyad, reshaped_df$Participant), ]
 reshaped_df <- reshaped_df[grepl('Chase', reshaped_df$Event), ]
 reshaped_df$EventNumber <- as.numeric(sub("Chase ", "", reshaped_df$Event))
@@ -17,7 +17,7 @@ combined_model_cols <- c(
   'Time'
 )
 reshaped_df_z <- reshaped_df %>% mutate(across(combined_model_cols, scale)) %>% mutate(Dyad = as.factor(Dyad))
-write_xlsx(reshaped_df_z, "/Users/macbook/Desktop/UCL PhD Work/fNIRSfMRIminecraft/Minecraftanalysis/Analysispipeline/Behaviouraldata/Behaviouralstatsanalysis/NEWMINECRAFTSAMPLE.xlsx")
+write_xlsx(reshaped_df_z, "/Users/macbook/Desktop/7 UCL PhD (2022-2025)/2 Minecraft fNIRS-fMRI Study/Study Files/Minecraftanalysis/Analysispipeline/Behaviouraldata/Behaviouralstatsanalysis/NEWMINECRAFTSAMPLE.xlsx")
 #combined_formula <- as.formula(paste('Hunting.original ~', paste(combined_model_cols, collapse = " + "), '+ (1 | Dyad) + (1 | Participant)'))
 #combined_model_mixed <- lmer(combined_formula, data = reshaped_df_z)
 dyad_slopes <- c('Distance.between.self.and.other','Scaled.self.facing.other','Lag.Score')
@@ -29,14 +29,14 @@ combined_model_mixed <- lmer(combined_formula, data = reshaped_df_z, control = l
 vif_combined <- vif(combined_model_mixed)
 vif_combined_df <- as.data.frame(vif_combined)
 vif_combined_df <- cbind(Variables = rownames(vif_combined_df), vif_combined_df)
-write_xlsx(vif_combined_df, "/Users/macbook/Desktop/UCL PhD Work/fNIRSfMRIminecraft/Minecraftanalysis/Analysispipeline/Behaviouraldata/Behaviouralstatsanalysis/Combined_VIFFNIRS.xlsx")
+write_xlsx(vif_combined_df, "/Users/macbook/Desktop/7 UCL PhD (2022-2025)/2 Minecraft fNIRS-fMRI Study/Study Files/Minecraftanalysis/Analysispipeline/Behaviouraldata/Behaviouralstatsanalysis/Combined_VIFFNIRS.xlsx")
 effect_size_combined <- cohens_f(combined_model_mixed)
 cohen_f2_combined_df <- data.frame(
   Variable = effect_size_combined$Parameter,
   Cohen_f2 = round((effect_size_combined$Cohens_f_partial)^2, 2),
   stringsAsFactors = FALSE
 )
-write_xlsx(cohen_f2_combined_df, "/Users/macbook/Desktop/UCL PhD Work/fNIRSfMRIminecraft/Minecraftanalysis/Analysispipeline/Behaviouraldata/Behaviouralstatsanalysis/Combined_Model_Cohen_f2.xlsx")
+write_xlsx(cohen_f2_combined_df, "/Users/macbook/Desktop/7 UCL PhD (2022-2025)/2 Minecraft fNIRS-fMRI Study/Study Files/Minecraftanalysis/Analysispipeline/Behaviouraldata/Behaviouralstatsanalysis/Combined_Model_Cohen_f2.xlsx")
 combined_model_summary <- summary(combined_model_mixed)
 #combined_model_CI <- confint(combined_model_mixed)
 fixef_vals <- fixef(combined_model_mixed)
@@ -80,7 +80,7 @@ custom_order <- c(
 combined_model_coefficients$Variable <- factor(combined_model_coefficients$Variable, levels = custom_order)
 combined_model_coefficients <- combined_model_coefficients[order(combined_model_coefficients$Variable), ]
 combined_model_coefficients$Variable <- as.character(combined_model_coefficients$Variable)
-write_xlsx(combined_model_coefficients, "/Users/macbook/Desktop/UCL PhD Work/fNIRSfMRIminecraft/Minecraftanalysis/Analysispipeline/Behaviouraldata/Behaviouralstatsanalysis/Combined_Model_CoefficientsFNIRS.xlsx")
+write_xlsx(combined_model_coefficients, "/Users/macbook/Desktop/7 UCL PhD (2022-2025)/2 Minecraft fNIRS-fMRI Study/Study Files/Minecraftanalysis/Analysispipeline/Behaviouraldata/Behaviouralstatsanalysis/Combined_Model_CoefficientsFNIRS.xlsx")
 
 #plotting the raw data
 
@@ -88,7 +88,7 @@ library(ggplot2)
 library(ggeffects)
 library(dplyr)
 
-raw_df <- read.csv('/Users/macbook/Desktop/UCL PhD Work/fNIRSfMRIminecraft/Minecraftanalysis/Analysispipeline/Behaviouraldata/PREZSCOREFRAMECHASE.csv')
+raw_df <- read.csv('/Users/macbook/Desktop/7 UCL PhD (2022-2025)/2 Minecraft fNIRS-fMRI Study/Study Files/Minecraftanalysis/Analysispipeline/Behaviouraldata/PREZSCOREFRAMECHASE.csv')
 #raw_df <- aggregate(raw_df,list(raw_df$Dyad),FUN=mean)
 vars <- c(
   "Distance.between.self.and.prey",
